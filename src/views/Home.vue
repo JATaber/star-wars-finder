@@ -1,5 +1,5 @@
 <template>
-  <div v-if="character !== null" class="home">
+  <div v-if="characterNumber !== null && planetInfo.length > 0" class="home">
     <h1>Star Wars Character Info</h1>
     <h2>{{character.name}}</h2>
     <h3>Birth year: {{character.birth_year}}</h3>
