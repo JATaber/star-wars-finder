@@ -4,7 +4,7 @@
     <h2>{{character.name}}</h2>
     <h3>Birth year: {{character.birth_year}}</h3>
     <h3>Homeplanet: {{planetInfo[0].name}}</h3><button @click="showPlanet = !showPlanet">More Info</button>
-    <div v-if=showPlanet>
+    <div v-show="showPlanet">
       <h4>Climate: {{planetInfo[0].climate}}</h4>
       <h4>Population: {{planetInfo[0].population}}</h4>
       <h4>Diameter: {{planetInfo[0].diameter}}</h4>
@@ -13,7 +13,19 @@
       <h4>Terrain: {{planetInfo[0].terrain}}</h4>
       <h4>Rotation Period: {{planetInfo[0].rotation_period}}</h4>
     </div>
-    <h3>Ships Owned: {{shipInfo.length}}</h3>
+    <h3>Ships Owned: {{starship.length}}</h3>
+    <div v-if="starship.length > 0" >
+      <button @click="showShips = !showShips">Show Ships</button>
+    </div>
+    <div v-show="showShips">
+      <div v-for="(ship, index) in shipInfo" :key="index">
+        <h4>Name: {{ship.name}}</h4>
+        <h4>Ship Class: {{ship.starship_class}}</h4>
+        <h4>Model: {{ship.model}}</h4>
+        <h4>Crew Size: {{ship.crew}}</h4>
+        <h4>Cost: {{ship.cost_in_credits}} credits</h4>
+      </div>
+    </div>
     <button v-show="characterNumber > 1" @click="getPrevCharacter">Previous</button>
     <button v-show="characterNumber < 87" @click="getNextCharacter">NEXT</button>
   </div>
@@ -105,6 +117,7 @@ export default {
     getNextCharacter () {
       this.characterNumber++;
       console.log(this.characterNumber);
+      this.shipInfo = [];
       this.getCharacterInfo();
     },
     getPrevCharacter () {
