@@ -1,8 +1,19 @@
 <template>
-  <div class="home">
+  <div v-if="character !== null" class="home">
     <h1>Star Wars Character Info</h1>
     <h2>{{character.name}}</h2>
     <h3>Birth year: {{character.birth_year}}</h3>
+    <h3>Homeplanet: {{planetInfo[0].name}}</h3><button @click="showPlanet = !showPlanet">More Info</button>
+    <div v-if=showPlanet>
+      <h4>Climate: {{planetInfo[0].climate}}</h4>
+      <h4>Population: {{planetInfo[0].population}}</h4>
+      <h4>Diameter: {{planetInfo[0].diameter}}</h4>
+      <h4>Gravity: {{planetInfo[0].gravity}}</h4>
+      <h4>Surface Water: {{planetInfo[0].surface_water}}</h4>
+      <h4>Terrain: {{planetInfo[0].terrain}}</h4>
+      <h4>Rotation Period: {{planetInfo[0].rotation_period}}</h4>
+    </div>
+    <h3>Ships Owned: {{shipInfo.length}}</h3>
     <button v-show="characterNumber > 1" @click="getPrevCharacter">Previous</button>
     <button v-show="characterNumber < 87" @click="getNextCharacter">NEXT</button>
   </div>
@@ -21,6 +32,8 @@ export default {
       starship: [],
       shipInfo: [],
       planetInfo: [],
+      showPlanet: false,
+      showShips: false,
       errors: []
     }
   },
@@ -28,9 +41,6 @@ export default {
     this.randomNumber()
   },
   components: {
-    'homeworlds':{
-      template: ''
-    },
     'spaceship':{
       template: ''
     }
