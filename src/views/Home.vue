@@ -1,34 +1,46 @@
 <template>
-  <div v-if="characterNumber !== null && planetInfo.length > 0" class="home">
-    <h1>Star Wars Character Info</h1>
-    <h2>{{character.name}}</h2>
-    <h3>Birth year: {{character.birth_year}}</h3>
-    <h3>Homeplanet: {{planetInfo[0].name}}</h3><button @click="showPlanet = !showPlanet">More Info</button>
-    <div v-show="showPlanet">
-      <h4>Climate: {{planetInfo[0].climate}}</h4>
-      <h4>Population: {{planetInfo[0].population}}</h4>
-      <h4>Diameter: {{planetInfo[0].diameter}}</h4>
-      <h4>Gravity: {{planetInfo[0].gravity}}</h4>
-      <h4>Surface Water: {{planetInfo[0].surface_water}}</h4>
-      <h4>Terrain: {{planetInfo[0].terrain}}</h4>
-      <h4>Rotation Period: {{planetInfo[0].rotation_period}}</h4>
-    </div>
-    <h3>Ships Owned: {{starship.length}}</h3>
-    <div v-if="starship.length > 0" >
-      <button @click="showShips = !showShips">Show Ships</button>
-    </div>
-    <div v-show="showShips">
-      <div v-for="(ship, index) in shipInfo" :key="index">
-        <h4>Name: {{ship.name}}</h4>
-        <h4>Ship Class: {{ship.starship_class}}</h4>
-        <h4>Model: {{ship.model}}</h4>
-        <h4>Crew Size: {{ship.crew}}</h4>
-        <h4>Cost: {{ship.cost_in_credits}} credits</h4>
-      </div>
-    </div>
-    <button v-show="characterNumber > 1" @click="getPrevCharacter">Previous</button>
-    <button v-show="characterNumber < 87" @click="getNextCharacter">NEXT</button>
-  </div>
+  <section v-if="characterNumber !== null && planetInfo.length > 0" class="home">
+    <b-container>
+      <b-jumbotron >
+        <h2>{{character.name}}</h2>
+        <h3>Birth year: {{character.birth_year}}</h3>
+        <div class="flex">
+          <h3>Homeplanet: {{planetInfo[0].name}}</h3>
+          <button class="planet btn btn-outline-info" @click="showPlanet = !showPlanet">More Info</button>
+        </div>
+        <div v-show="showPlanet">
+          <h4>Climate: {{planetInfo[0].climate}}</h4>
+          <h4>Population: {{planetInfo[0].population}}</h4>
+          <h4>Diameter: {{planetInfo[0].diameter}}</h4>
+          <h4>Gravity: {{planetInfo[0].gravity}}</h4>
+          <h4>Surface Water: {{planetInfo[0].surface_water}}</h4>
+          <h4>Terrain: {{planetInfo[0].terrain}}</h4>
+          <h4>Rotation Period: {{planetInfo[0].rotation_period}}</h4>
+        </div>
+        <div class="flex">
+          <h3>Ships Owned: {{starship.length}}</h3>
+          <div v-if="starship.length > 0" >
+            <button class="btn btn-outline-info" @click="showShips = !showShips">Show Ships</button>
+          </div>
+        </div>
+        <div v-show="showShips">
+          <div class="row justify-content-md-center">
+            <div class="col-md-auto" v-for="(ship, index) in shipInfo" :key="index">
+              <div class="card">
+                <h4 class="card-title">Name: {{ship.name}}</h4>
+                <p class="card-text">Ship Class: {{ship.starship_class}}</p>
+                <p class="card-text">Model: {{ship.model}}</h4>
+                <p class="card-text">Crew Size: {{ship.crew}}</p>
+                <p class="card-text">Cost: {{ship.cost_in_credits}} credits</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button v-show="characterNumber > 1" @click="getPrevCharacter">Previous</button>
+        <button v-show="characterNumber < 87" @click="getNextCharacter">NEXT</button>
+      </b-jumbotron>
+    </b-container>
+  </section>
 </template>
 
 <script>
@@ -128,3 +140,32 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" rel="stylesheet/scss">
+
+
+.jumbotron{
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2{
+  text-align: center;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card-title{
+  text-align: center;
+}
+
+.card{
+    padding: 20px;
+  }
+</style>
