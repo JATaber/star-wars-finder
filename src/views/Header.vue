@@ -1,6 +1,6 @@
 <template>
     <header>
-        <icon name="brands/rebel"></icon><h1>Star Wars Character Info</h1>
+        <h1><font-awesome-icon :icon="['fab', 'rebel']" pulse/> Star Wars Character Info <font-awesome-icon :icon="['fab', 'empire']" spin/></h1>
     </header>
 </template>
 
@@ -8,7 +8,19 @@
 
 h1{
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px auto;
+    font-size: 48px;
+    max-width: 800px;
+    color: #FFDD2B;
+
+    .fa-rebel{
+        font-size: 58px;
+        color: #40BFAB;
+    }
+
+    .fa-empire{
+        font-size: 58px;
+        color: #D30C34;
+    }
 }
 </style>

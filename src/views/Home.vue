@@ -8,14 +8,18 @@
           <h3>Homeplanet: {{planetInfo[0].name}}</h3>
           <button class="planet btn btn-outline-info" @click="showPlanet = !showPlanet">More Info</button>
         </div>
-        <div v-show="showPlanet">
-          <h4>Climate: {{planetInfo[0].climate}}</h4>
-          <h4>Population: {{planetInfo[0].population}}</h4>
-          <h4>Diameter: {{planetInfo[0].diameter}}</h4>
-          <h4>Gravity: {{planetInfo[0].gravity}}</h4>
-          <h4>Surface Water: {{planetInfo[0].surface_water}}</h4>
-          <h4>Terrain: {{planetInfo[0].terrain}}</h4>
-          <h4>Rotation Period: {{planetInfo[0].rotation_period}}</h4>
+        <div class="row justify-content-md-center" v-show="showPlanet">
+          <div class="col-md-auto">
+            <div class="card">
+              <p class="card-text">Climate: {{planetInfo[0].climate}}</p>
+              <p class="card-text">Population: {{planetInfo[0].population}}</p>
+              <p class="card-text">Diameter: {{planetInfo[0].diameter}}</p>
+              <p class="card-text">Gravity: {{planetInfo[0].gravity}}</p>
+              <p class="card-text">Surface Water: {{planetInfo[0].surface_water}}</p>
+              <p class="card-text">Terrain: {{planetInfo[0].terrain}}</p>
+              <p class="card-text">Rotation Period: {{planetInfo[0].rotation_period}}</p>
+            </div>
+          </div>
         </div>
         <div class="flex">
           <h3>Ships Owned: {{starship.length}}</h3>
@@ -36,8 +40,10 @@
             </div>
           </div>
         </div>
-        <button v-show="characterNumber > 1" @click="getPrevCharacter">Previous</button>
-        <button v-show="characterNumber < 87" @click="getNextCharacter">NEXT</button>
+        <div class="flexBtn">
+          <button class="btn navBtn" v-show="characterNumber > 1" @click="getPrevCharacter">Previous</button>
+          <button class="btn navBtn" v-show="characterNumber < 87" @click="getNextCharacter">NEXT</button>
+        </div>
       </b-jumbotron>
     </b-container>
   </section>
@@ -148,6 +154,8 @@ export default {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #201559;
+  color: #F2DAB4;
 }
 
 h2{
@@ -161,11 +169,32 @@ h2{
   margin-bottom: 10px;
 }
 
-.card-title{
-  text-align: center;
+.flexBtn{
+  max-width: 400px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+
+  .navBtn{
+    background-color: #40BFAB;
+  }
+
+  .navBtn:hover{
+    background-color: #F2DAB4;
+  }
+}
+
+p{
+  margin-bottom: 5px;
 }
 
 .card{
-    padding: 20px;
+  padding: 20px;
+  background-color: black;
+  margin-bottom: 20px;
+
+  .card-title{
+    text-align: center;
+  }
   }
 </style>
